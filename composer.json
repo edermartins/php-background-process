@@ -1,0 +1,20 @@
+{
+    "name": "edermartins/php-backgroud-process",
+    "type": "library",
+    "description": "This is a very simple classes to run and manage processes Windows or Linux in background using old php <= 5.6",
+    "keywords": ["thread","backgroud","windows", "linux"],
+    "homepage": "https://github.com/edermartins/php-backgroud-process",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eder Jani Martins",
+            "email": "zetared@gmail.com"
+        }
+    ],
+    "require": {
+        "php" : ">=5.4.0"
+    },
+    "autoload": {
+        "classmap" : [ "BackgroudProcess/" ]
+    }
+}
