@@ -22,7 +22,7 @@ class TaskManager {
 		/*
 		 * The task do not stats automatcally 
 		 */
-		$task = new Task($cmd, $params);
+	    $task = new Task($cmd, $params);
 		/*
 		 * Start id 
 		 */

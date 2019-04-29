@@ -37,6 +37,7 @@ class Task {
 		if( strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ){
 			$result = self::OS_WINDOWS;
 		}
+		echo __METHOD__ . " OS: $result\n";
 		return $result;
 	}
 	
@@ -53,6 +54,7 @@ class Task {
 				$result = $this->startLinux();
 			}
 		}
+		echo __METHOD__ . " PID: $result\n";
 		return $result;
 	}
 
@@ -72,7 +74,6 @@ class Task {
 		 * rodar mais de um
 		 */
 		$completeCmd = "start \"{$process_name}\" \"{$this->cmd}\" \"{$this->params}\""; 
-		echo "\n$completeCmd\n";
 		pclose(popen($completeCmd, "r"));
 		
 		/*
@@ -93,7 +94,8 @@ class Task {
 	 * @return mixed The PID or null if fail
 	 */
 	private function startLinux(){
-		$this->pid = trim(exec("{$this->cmd} {$this->params} > dev/null 2>&1 & echo $!"));
+	    $this->pid = trim(exec("{$this->cmd} {$this->params} > /dev/null 2>&1 & echo $!"));
+	    return $this->pid;
 	}
 	
 	/**
@@ -116,6 +118,7 @@ class Task {
 				$result = self::PROCESS_KILLED;
 			}
 		}
+		echo __METHOD__ . " Status: $result\n";
 		return $result;
 	}
 	
@@ -175,7 +178,7 @@ class Task {
 	 */
 	private function killLinux($force=false){
 		$force = ($force ? '-9' : '');
-		exec("kill $force {$this->pid} > dev/null 2>&1 & echo $!");
+		exec("kill $force {$this->pid} > /dev/null & echo $!");
 	}
 	
 	/**
